@@ -112,3 +112,4 @@ zstyle -a ':prezto:load' pmodule 'pmodules'
 pmodload "$pmodules[@]"
 unset pmodules
 
+source ~/.zprezto/sources/get-short-path.zsh

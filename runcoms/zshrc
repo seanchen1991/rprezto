@@ -34,6 +34,9 @@ alias gx='gitx --all'
 alias gh='git hist'
 alias gha='git hist --all'
 
+# Hub aliases
+alias gpr="git pull-request"
+
 alias got='git'
 alias gut='git'
 alias get='git'
