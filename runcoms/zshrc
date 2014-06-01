@@ -16,12 +16,16 @@ export GIT_EDITOR=/usr/local/bin/vim
 export EDITOR=/usr/local/bin/vim
 export VISUAL=/usr/local/bin/mvim
 export NODE_PATH=/usr/local/lib/node_modules
+export NODE_ENV="development"
 export XML_CATALOG_FILES="/usr/local/etc/xml/catalog"
 eval "$(rbenv init -)"
 
-alias git="hub"
-
 # Git aliases:
+alias git="hub"
+alias got='git'
+alias gut='git'
+alias get='git'
+
 alias gs='git status'
 alias ga='git add'
 alias gb='git branch'
@@ -37,14 +41,23 @@ alias gha='git hist --all'
 # Hub aliases
 alias gpr="git pull-request"
 
-alias got='git'
-alias gut='git'
-alias get='git'
-
 # Brew aliases
 alias bup='brew update'
 alias bug='brew upgrade'
 alias bupg='brew update && brew upgrade'
 
-# Vim alias
+# Vim aliases
 alias vim='vim -p'
+
+# gcc/g++ aliases
+alias g++='g++-4.8'
+
+# Servering aliases
+alias serve="python -m SimpleHTTPServer"
+
+# Node aliases
+alias node="node --harmony --use-strict"
+alias ni="npm install"
+alias nig="npm install -g"
+alias nis="npm install --save"
+alias nisd="npm install --save-dev"
