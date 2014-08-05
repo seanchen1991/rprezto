@@ -10,8 +10,12 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+# Completion
+fpath=('/usr/local/share/zsh/site-functions/' $fpath)
+
 # Customize to your needs...
 export PATH=/usr/local/bin:/usr/local/opt/ccache/libexec:/Users/Jonathan/Library/Haskell/bin:$PATH:/Users/Jonathan/.cabal/bin:/Users/Jonathan/.rvm/gems/ruby-2.0.0-p247/bin:/Users/Jonathan/.rvm/gems/ruby-2.0.0-p247@global/bin:/Users/Jonathan/.rvm/rubies/ruby-2.0.0-p247/bin:/Users/Jonathan/.rvm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin
+export LD_LIBRARY_PATH=usr/local/lib
 export GIT_EDITOR=/usr/local/bin/vim
 export EDITOR=/usr/local/bin/vim
 export VISUAL=/usr/local/bin/mvim
@@ -24,7 +28,6 @@ eval "$(rbenv init -)"
 alias git="hub"
 alias got='git'
 alias gut='git'
-alias get='git'
 
 alias gs='git status'
 alias ga='git add'
@@ -37,6 +40,10 @@ alias gk='gitk--all&'
 alias gx='gitx --all'
 alias gh='git hist'
 alias gha='git hist --all'
+alias gpu='git pull'
+alias gpur='git pull --rebase'
+alias gpo='git push origin'
+alias gpom='git push origin master'
 
 # Hub aliases
 alias gpr="git pull-request"
@@ -50,14 +57,39 @@ alias bupg='brew update && brew upgrade'
 alias vim='vim -p'
 
 # gcc/g++ aliases
-alias g++='g++-4.8'
+alias g++='g++-4.9'
+alias gcc='gcc-4.9'
 
 # Servering aliases
 alias serve="python -m SimpleHTTPServer"
 
 # Node aliases
-alias node="node --harmony --use-strict"
+alias node6="node --harmony"
+alias node6u="node --harmony --use-strict"
 alias ni="npm install"
 alias nig="npm install -g"
 alias nis="npm install --save"
 alias nisd="npm install --save-dev"
+
+# Rust aliases
+rust-create () {
+    git clone https://github.com/reem/rust-bare "rust-$1" && cd "rust-$1"
+    rm -rf .git README.md && sed -i '' "s/project-name/$1/g" Cargo.toml
+    git init
+}
+
+# General Bash Aliases
+
+replace () {
+    find_this=$1
+    shift
+    replace_with=$1
+    shift
+
+    ag -l $find_this $* | xargs sed -i '' "s/$find_this/$replace_with/g"
+}
+
+cl () { cd "${1}"; ls }
+
+# added by travis gem
+[ -f /Users/Jonathan/.travis/travis.sh ] && source /Users/Jonathan/.travis/travis.sh
