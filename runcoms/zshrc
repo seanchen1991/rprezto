@@ -5,13 +5,16 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+# Has to be loaded before prezto or hub completion is not loaded.
+alias git="hub"
+
+# Completion
+fpath=('/usr/local/share/zsh/site-functions/' $fpath)
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
-
-# Completion
-fpath=('/usr/local/share/zsh/site-functions/' $fpath)
 
 # Customize to your needs...
 export PATH=/usr/local/bin:/usr/local/opt/ccache/libexec:/Users/Jonathan/Library/Haskell/bin:$PATH:/Users/Jonathan/.cabal/bin:/Users/Jonathan/.rvm/gems/ruby-2.0.0-p247/bin:/Users/Jonathan/.rvm/gems/ruby-2.0.0-p247@global/bin:/Users/Jonathan/.rvm/rubies/ruby-2.0.0-p247/bin:/Users/Jonathan/.rvm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin
@@ -25,7 +28,6 @@ export XML_CATALOG_FILES="/usr/local/etc/xml/catalog"
 eval "$(rbenv init -)"
 
 # Git aliases:
-alias git="hub"
 alias got='git'
 alias gut='git'
 
@@ -90,6 +92,14 @@ replace () {
 }
 
 cl () { cd "${1}"; ls }
+
+clone () {
+    get_this=$1
+    put_it_here=$2
+    git clone $1 $2
+}
+
+rustup () { curl www.rust-lang.org/rustup.sh | sudo bash }
 
 # added by travis gem
 [ -f /Users/Jonathan/.travis/travis.sh ] && source /Users/Jonathan/.travis/travis.sh
