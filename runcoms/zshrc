@@ -95,11 +95,13 @@ cl () { cd "${1}"; ls }
 
 clone () {
     get_this=$1
-    put_it_here=$2
-    git clone $1 $2
+    temp=${2-$1}
+    put_it_here=$(basename $put_it_here)
+    git clone $get_this $put_it_here
+    cd $put_it_here
 }
 
-rustup () { curl www.rust-lang.org/rustup.sh | sudo bash }
+rustup () { curl https://static.rust-lang.org/rustup.sh | sudo bash }
 
 # added by travis gem
 [ -f /Users/Jonathan/.travis/travis.sh ] && source /Users/Jonathan/.travis/travis.sh
