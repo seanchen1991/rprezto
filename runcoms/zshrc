@@ -16,10 +16,18 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# Source vars first
+# All modules can be found in this directory.
+#
+# To go there, simply type `modules` in your shell.
+#
+# Anything with the `.zsh` extension placed in this directory or
+# any child directories will automatically be sourced on startup.
+alias modules="${ZDOTDIR:-$HOME}/.zprezto/runcoms/zshmodules"
+
+# Source vars first, so as to not break other things.
 source "${ZDOTDIR:-$HOME}/.zprezto/runcoms/zshmodules/vars.zsh"
 
-# Source all modules
+# Source all modules.
 for f in `find ${ZDOTDIR:-$HOME}/.zprezto/runcoms/zshmodules -type f -name *.zsh`; do
     source $f
 done
