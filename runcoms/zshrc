@@ -16,92 +16,11 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# Customize to your needs...
-export PATH=/usr/local/bin:/usr/local/opt/ccache/libexec:/Users/Jonathan/Library/Haskell/bin:$PATH:/Users/Jonathan/.cabal/bin:/Users/Jonathan/.rvm/gems/ruby-2.0.0-p247/bin:/Users/Jonathan/.rvm/gems/ruby-2.0.0-p247@global/bin:/Users/Jonathan/.rvm/rubies/ruby-2.0.0-p247/bin:/Users/Jonathan/.rvm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin
-export LD_LIBRARY_PATH=usr/local/lib
-export GIT_EDITOR=/usr/local/bin/vim
-export EDITOR=/usr/local/bin/vim
-export VISUAL=/usr/local/bin/mvim
-export NODE_PATH=/usr/local/lib/node_modules
-export NODE_ENV="development"
-export XML_CATALOG_FILES="/usr/local/etc/xml/catalog"
-eval "$(rbenv init -)"
+# Source vars first
+source "${ZDOTDIR:-$HOME}/.zprezto/runcoms/zshmodules/vars.zsh"
 
-# Git aliases:
-alias got='git'
-alias gut='git'
+# Source all modules
+for f in `find ${ZDOTDIR:-$HOME}/.zprezto/runcoms/zshmodules -type f -name *.zsh`; do
+    source $f
+done
 
-alias gs='git status'
-alias ga='git add'
-alias gb='git branch'
-alias gc='git commit'
-alias gd='git diff'
-alias gdl='git diff HEAD HEAD~1'
-alias goto='git checkout'
-alias gk='gitk--all&'
-alias gx='gitx --all'
-alias gh='git hist'
-alias gha='git hist --all'
-alias gpu='git pull'
-alias gpur='git pull --rebase'
-alias gpo='git push origin'
-alias gpom='git push origin master'
-
-# Hub aliases
-alias gpr="git pull-request"
-
-# Brew aliases
-alias bup='brew update'
-alias bug='brew upgrade'
-alias bupg='brew update && brew upgrade'
-
-# Vim aliases
-alias vim='vim -p'
-
-# gcc/g++ aliases
-alias g++='g++-4.9'
-alias gcc='gcc-4.9'
-
-# Servering aliases
-alias serve="python -m SimpleHTTPServer"
-
-# Node aliases
-alias node6="node --harmony"
-alias node6u="node --harmony --use-strict"
-alias ni="npm install"
-alias nig="npm install -g"
-alias nis="npm install --save"
-alias nisd="npm install --save-dev"
-
-# Rust aliases
-rust-create () {
-    git clone https://github.com/reem/rust-bare "rust-$1" && cd "rust-$1"
-    rm -rf .git README.md && sed -i '' "s/project-name/$1/g" Cargo.toml
-    git init
-}
-
-# General Bash Aliases
-
-replace () {
-    find_this=$1
-    shift
-    replace_with=$1
-    shift
-
-    ag -l $find_this $* | xargs sed -i '' "s/$find_this/$replace_with/g"
-}
-
-cl () { cd "${1}"; ls }
-
-clone () {
-    get_this=$1
-    temp=${2-$1}
-    put_it_here=$(basename $put_it_here)
-    git clone $get_this $put_it_here
-    cd $put_it_here
-}
-
-rustup () { curl https://static.rust-lang.org/rustup.sh | sudo bash }
-
-# added by travis gem
-[ -f /Users/Jonathan/.travis/travis.sh ] && source /Users/Jonathan/.travis/travis.sh
