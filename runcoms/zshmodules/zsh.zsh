@@ -11,3 +11,5 @@ replace () {
 
 cl () { cd "${1}"; ls }
 
+alias xa="xargs -n1"
+
