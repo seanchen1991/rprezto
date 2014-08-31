@@ -62,9 +62,9 @@ gprq () {
     local current_branch=`git rev-parse --abbrev-ref HEAD`
     if [ $# -gt 2 ]; then
         local message=$3
-        gpr -h "$to:master" -b "$from:$current_branch" -m "$message"
+        gpr -b "$to:master" -h "$from:$current_branch" -m "$message"
     else
-        gpr -h "$to:master" -b "$from:$current_branch"
+        gpr -b "$to:master" -h "$from:$current_branch"
     fi
 }
 
