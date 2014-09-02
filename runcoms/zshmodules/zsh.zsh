@@ -13,3 +13,7 @@ cl () { cd "${1}"; ls }
 
 alias xa="xargs -n1"
 
+chpwd () { ls }
+
+scd () { cd $* > /dev/null }
+
