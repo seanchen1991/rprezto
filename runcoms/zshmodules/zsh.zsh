@@ -9,7 +9,7 @@ replace () {
     ag -l $find_this $* | xargs sed -i '' "s/$find_this/$replace_with/g"
 }
 
-cl () { cd "${1}"; ls }
+cl () { clear; ls }
 
 alias xa="xargs -n1"
 
