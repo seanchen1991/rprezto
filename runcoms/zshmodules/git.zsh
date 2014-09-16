@@ -5,7 +5,7 @@ alias gut='git'
 alias gs='git status'
 alias ga='git add'
 alias gb='git branch'
-alias gc='git commit'
+alias gc='git commit -v'
 alias gd='git diff'
 alias gdl='git diff HEAD HEAD~1'
 alias goto='git checkout'
@@ -31,7 +31,9 @@ clone () {
     local temp=${2-$1}
     local put_it_here=$(basename $temp)
     git clone $get_this $put_it_here
-    cd $put_it_here
+    scd $put_it_here
+    echo "\n"
+    ls
 }
 
 create () {
@@ -40,7 +42,7 @@ create () {
         return 1
     fi
 
-    git status 2> /dev/null
+    git status &> /dev/null
     if [ $? -eq 0 ]; then
         git create
         travis enable
