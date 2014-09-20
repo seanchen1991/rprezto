@@ -36,6 +36,20 @@ clone () {
     ls
 }
 
+fork () {
+    if [ $# -gt 0 ]; then
+        echo "Usage (when in a git repo): fork"
+        return 1
+    fi
+
+    # Fail if we are not in a git repo
+    git fork || return 1
+
+    # Rename to origin/upstream instead of reem/origin
+    git rename origin upstream
+    git rename reem origin
+}
+
 create () {
     if [ $# -gt 0 ]; then
         echo "Usage (when in a git repo): create"
