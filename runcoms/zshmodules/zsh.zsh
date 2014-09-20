@@ -17,3 +17,5 @@ chpwd () { ls }
 
 scd () { cd $* > /dev/null }
 
+srm () { rm -f $* }
+
